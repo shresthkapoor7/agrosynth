@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# AgroSynth Weather Intelligence
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+AgroSynth Weather Intelligence is an open-source, modern weather intelligence platform designed for agriculture and community use. It provides real-time weather data, user-generated alerts, AI-powered predictions, and interactive weather maps—all in a beautiful, responsive web app.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Home Dashboard**: Overview of all features and quick navigation.
+- **User Alerts**: Create, manage, and view custom weather alerts with text, images, location, and weather type (rain, sun, wind, heatwave, flood, hailstorm, anomaly, pest swarm, etc.).
+- **Windy Map**: Explore real-time weather overlays and detailed meteorological data using the Windy integration.
+- **AI Alerts**: Get AI-powered predictions and insights for future weather events using advanced LLMs.
+- **Report Alert**: Submit weather events with location picking (map or geolocation), image upload (Supabase), and see a list of all reported alerts.
+- **Mobile Responsive**: Fully responsive UI/UX for mobile, tablet, and desktop.
+- **Persistent Storage**: User alerts are saved in local storage and images are uploaded to Supabase Storage.
 
-### `npm start`
+## Tech Stack
+- React (with functional components and hooks)
+- React Router DOM
+- React Leaflet (for maps)
+- Supabase (for image storage)
+- React Icons
+- CSS-in-JS and inline responsive styles
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
+- Node.js (v16+ recommended)
+- npm
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/agrosynth.git
+   cd agrosynth
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up Supabase:
+   - Create a [Supabase](https://supabase.com/) project.
+   - Create a storage bucket named `alerts`.
+   - Copy your Supabase URL and anon key.
+   - Create a `src/supabase.js` file:
+     ```js
+     import { createClient } from '@supabase/supabase-js';
+     export const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+     ```
 
-### `npm run build`
+### Running the App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
+- **Home**: See all features and navigate quickly.
+- **User Alerts**: Add alerts with name, description, weather type, image, and location. Alerts are listed and persisted.
+- **Report Alert**: Pick a location (map/geolocation), upload an image, and submit a weather event. All reports are listed below the form.
+- **Windy Map**: View interactive weather overlays for NYC and beyond.
+- **AI Alerts**: See AI-driven weather predictions (LLM integration point).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure
 
-### `npm run eject`
+```
+src/
+  App.js            # Main app and routing
+  pages/
+    HomePage.jsx
+    UserAlertsPage.jsx
+    CreateAlert.jsx
+    WindyEmbed.jsx
+    AIAlertsPage.jsx
+    HeatmapPage.jsx
+  supabase.js       # Supabase client setup
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
+[MIT](LICENSE)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+Built for the Open Source Hackathon 🚀
