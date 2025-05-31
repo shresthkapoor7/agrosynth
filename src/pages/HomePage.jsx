@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { FaReact, FaGithub } from "react-icons/fa";
+import { SiSupabase, SiReactrouter, SiLeaflet } from "react-icons/si";
 import { supabase } from '../supabase';
 export default function HomePage() {
     const [alerts, setAlerts] = useState([]);
@@ -16,22 +18,22 @@ export default function HomePage() {
 
     useEffect(() => {
         const fetchAlerts = async () => {
-          const { data, error } = await supabase
-            .from("user_alerts")
-            .select("*")
-            .order("created_at", { ascending: false });
+            const { data, error } = await supabase
+                .from("user_alerts")
+                .select("*")
+                .order("created_at", { ascending: false });
 
-          if (error) {
-            console.error("Error fetching alerts:", error);
-          } else {
-            const formatted = data.map(alert => ({
-              ...alert,
-              previewUrl: alert.image_url,
-              weatherType: alert.weather_type,
-              createdAt: alert.created_at,
-            }));
-            setAlerts(formatted);
-          }
+            if (error) {
+                console.error("Error fetching alerts:", error);
+            } else {
+                const formatted = data.map(alert => ({
+                    ...alert,
+                    previewUrl: alert.image_url,
+                    weatherType: alert.weather_type,
+                    createdAt: alert.created_at,
+                }));
+                setAlerts(formatted);
+            }
         };
         fetchAlerts();
     }, []);
@@ -59,6 +61,48 @@ export default function HomePage() {
                 }}>
                     AgroSynth Weather Intelligence
                 </h1>
+                <center><p style={{ fontSize: "1.2rem", color: "#666" }}>Made for Reboot the Earth Hackathon by</p></center>
+                <div style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: "1rem",
+                    marginBottom: "2rem"
+                }}>
+                    {[
+                        { name: "Shresth", url: "https://github.com/ShresthKapoor7" },
+                        { name: "Aditya", url: "https://www.linkedin.com/in/aditya-maheshwari-56b544251/" },
+                        { name: "Hannah", url: "https://www.linkedin.com/in/hannah-hb1225/" },
+                        { name: "Tram", url: "https://www.linkedin.com/in/ngoctramnguyen22/" },
+                        { name: "Tanishq", url: "https://www.linkedin.com/in/tanishq-sharma-ts/" },
+                    ].map((person, i) => (
+                        <a
+                            key={i}
+                            href={person.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                color: "#0077b6",
+                                fontWeight: 500,
+                                textDecoration: "none",
+                                border: "1px solid #0077b6",
+                                padding: "0.4rem 0.9rem",
+                                borderRadius: "6px",
+                                transition: "all 0.2s ease-in-out"
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = "#0077b6";
+                                e.currentTarget.style.color = "white";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = "transparent";
+                                e.currentTarget.style.color = "#0077b6";
+                            }}
+                        >
+                            {person.name}
+                        </a>
+                    ))}
+                </div>
                 <div style={{ marginBottom: "2rem", textAlign: "center" }}>
                     <video
                         width="100%"
@@ -187,13 +231,60 @@ export default function HomePage() {
                                 </>
                             ) : (
                                 <p style={{ fontSize: "1.1rem", fontWeight: "500", color: "#0077b6" }}>
-                                    ✅ Subscribed
+                                    ✅ Subscribed (it was made for hackathon so it's not working)
                                 </p>
                             )}
                         </div>
                     </div>
-                    <p>Built for the Open Source Hackathon</p>
+                    <p>Built for Reboot the Earth Hackathon</p>
                     <p>Empowering users with intelligent weather insights</p>
+                    <div style={{
+                        marginTop: "1rem",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "1.5rem",
+                        fontSize: "1rem",
+                        color: "#444"
+                    }}>
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            <FaReact color="#61DBFB" size={20} /> React
+                        </span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            <SiSupabase color="#3ECF8E" size={20} /> Supabase
+                        </span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 512 512"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                stroke="currentColor"
+                            >
+                                <g clipPath="url(#clip0_205_3)">
+                                    <path
+                                        d="M3 248.945C18 248.945 76 236 106 219C136 202 136 202 198 158C276.497 102.293 332 120.945 423 120.945"
+                                        strokeWidth="90"
+                                    />
+                                    <path d="M511 121.5L357.25 210.268L357.25 32.7324L511 121.5Z" />
+                                    <path
+                                        d="M0 249C15 249 73 261.945 103 278.945C133 295.945 133 295.945 195 339.945C273.497 395.652 329 377 420 377"
+                                        strokeWidth="90"
+                                    />
+                                    <path d="M508 376.445L354.25 287.678L354.25 465.213L508 376.445Z" />
+                                </g>
+                            </svg>
+                            OpenRouter
+                        </span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            <SiLeaflet color="#199900" size={20} /> React Leaflet
+                        </span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            <FaGithub size={20} /> GitHub
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
