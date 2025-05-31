@@ -11,7 +11,7 @@ export default function HomePage() {
         if (stored) {
             try {
                 const parsed = JSON.parse(stored);
-                setAlerts(parsed.slice(0, 5)); // show up to 5 recent alerts
+                setAlerts(parsed.slice(0, 5));
             } catch (e) {
                 console.error("Failed to parse alerts:", e);
             }
@@ -41,6 +41,21 @@ export default function HomePage() {
                 }}>
                     AgroSynth Weather Intelligence
                 </h1>
+                <div style={{ marginBottom: "2rem", textAlign: "center" }}>
+                    <video
+                        width="100%"
+                        height="auto"
+                        controls
+                        style={{
+                            maxWidth: "1000px",
+                            borderRadius: "12px",
+                            boxShadow: "0 2px 12px rgba(0,0,0,0.1)"
+                        }}
+                    >
+                        <source src="/agrosynth.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
 
                 {alerts.length > 0 && (
                     <div style={{
@@ -60,24 +75,6 @@ export default function HomePage() {
                         </ul>
                     </div>
                 )}
-
-                <div style={{
-                    backgroundColor: "#e3f2fd",
-                    border: "1px solid #90caf9",
-                    padding: "1rem 1.25rem",
-                    marginBottom: "2rem",
-                    borderRadius: "8px"
-                }}>
-                    <h3 style={{ margin: 0, color: "#0d47a1" }}>🤖 AI-Powered Forecasts</h3>
-                    <ul style={{ margin: "0.5rem 0 0 0", paddingLeft: "1.2rem" }}>
-                        <li style={{ marginBottom: "0.25rem" }}>
-                            <strong>Urban Flood Risk in Red Hook</strong> — 78% chance of flooding in the next 5 days based on rainfall and drainage patterns.
-                        </li>
-                        <li style={{ marginBottom: "0.25rem" }}>
-                            <strong>Brassica Pest Surge Likely</strong> — Cabbage worm activity expected due to high humidity; risk to Cabbage, Kale, and Lettuce crops.
-                        </li>
-                    </ul>
-                </div>
 
                 <div style={{
                     display: "grid",
