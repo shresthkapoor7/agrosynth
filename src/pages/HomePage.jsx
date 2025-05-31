@@ -1,21 +1,39 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import { supabase } from '../supabase';
 export default function HomePage() {
     const [alerts, setAlerts] = useState([]);
     const [subscribed, setSubscribed] = useState(false);
     const [email, setEmail] = useState("");
 
     useEffect(() => {
-        const stored = localStorage.getItem("weather_alerts");
-        if (stored) {
-            try {
-                const parsed = JSON.parse(stored);
-                setAlerts(parsed.slice(0, 5));
-            } catch (e) {
-                console.error("Failed to parse alerts:", e);
-            }
+        let deviceId = localStorage.getItem("device_id");
+        if (!deviceId) {
+            deviceId = crypto.randomUUID();
+            localStorage.setItem("device_id", deviceId);
         }
+    }, []);
+
+    useEffect(() => {
+        const fetchAlerts = async () => {
+          const { data, error } = await supabase
+            .from("user_alerts")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+          if (error) {
+            console.error("Error fetching alerts:", error);
+          } else {
+            const formatted = data.map(alert => ({
+              ...alert,
+              previewUrl: alert.image_url,
+              weatherType: alert.weather_type,
+              createdAt: alert.created_at,
+            }));
+            setAlerts(formatted);
+          }
+        };
+        fetchAlerts();
     }, []);
 
     return (

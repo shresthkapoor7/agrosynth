@@ -21,17 +21,17 @@ const WEATHER_TYPES = [
 // WeatherAlert class/structure
 class WeatherAlert {
     constructor({ name, location, description, weatherType, image, previewUrl, lat, lng }) {
-      this.name = name;
-      this.location = location;
-      this.description = description;
-      this.weatherType = weatherType;
-      this.image = image;
-      this.previewUrl = previewUrl;
-      this.lat = lat;
-      this.lng = lng;
-      this.createdAt = new Date();
+        this.name = name;
+        this.location = location;
+        this.description = description;
+        this.weatherType = weatherType;
+        this.image = image;
+        this.previewUrl = previewUrl;
+        this.lat = lat;
+        this.lng = lng;
+        this.createdAt = new Date();
     }
-  }
+}
 
 const TemperaturePage = () => {
     const isInitialLoad = useRef(true);
@@ -51,28 +51,37 @@ const TemperaturePage = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [alerts, setAlerts] = useState([]);
 
-    // Load alerts from localStorage on mount
     useEffect(() => {
-        const stored = localStorage.getItem('weather_alerts');
-        if (stored) {
-            try {
-                const parsed = JSON.parse(stored);
-                // Convert createdAt back to Date objects
-                setAlerts(parsed.map(a => ({ ...a, createdAt: new Date(a.createdAt) })));
-            } catch (e) {
-                // ignore parse errors
+        const fetchAlerts = async () => {
+            const deviceId = localStorage.getItem("device_id");
+            const { data, error } = await supabase
+                .from("user_alerts")
+                .select("*")
+                .eq("device_id", deviceId)
+                .order("created_at", { ascending: false });
+
+            if (error) {
+                console.error("Error fetching alerts:", error);
+            } else {
+                const formatted = data.map(alert => ({
+                    ...alert,
+                    previewUrl: alert.image_url,
+                    weatherType: alert.weather_type,
+                    createdAt: new Date(alert.created_at),
+                }));
+                setAlerts(formatted);
             }
-        }
+        };
+
+        fetchAlerts();
     }, []);
 
-    // Save alerts to localStorage whenever they change
     useEffect(() => {
         if (isInitialLoad.current) {
             isInitialLoad.current = false;
             return;
         }
         localStorage.setItem('weather_alerts', JSON.stringify(alerts));
-        console.log('Current alerts:', alerts);
     }, [alerts]);
 
     useEffect(() => {
@@ -105,9 +114,9 @@ const TemperaturePage = () => {
     async function getPlaceName(lat, lon) {
         const response = await fetch(
             `https://corsproxy.io/?https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
-          );
-          const data = await response.json();
-          return data.display_name || `${lat}, ${lon}`;
+        );
+        const data = await response.json();
+        return data.display_name || `${lat}, ${lon}`;
     }
 
     const handleInputChange = (e) => {
@@ -121,47 +130,48 @@ const TemperaturePage = () => {
 
     const uploadToSupabase = async (file) => {
         if (!file || !file.type.startsWith('image/')) {
-          throw new Error('Invalid image file');
+            throw new Error('Invalid image file');
         }
 
         const fileExt = file.name.split('.').pop();
         const fileName = `${Date.now()}.${fileExt}`;
 
         const { data, error } = await supabase.storage
-          .from('alerts') // <- bucket name here
-          .upload(fileName, file, {
-            contentType: file.type,
-            cacheControl: '3600',
-            upsert: false
-          });
+            .from('alerts') // <- bucket name here
+            .upload(fileName, file, {
+                contentType: file.type,
+                cacheControl: '3600',
+                upsert: false
+            });
 
         if (error) {
-          console.error("Upload error:", error);
-          throw error;
+            console.error("Upload error:", error);
+            throw error;
         }
 
         const { data: publicUrlData } = supabase
-          .storage
-          .from('alerts')
-          .getPublicUrl(fileName);
+            .storage
+            .from('alerts')
+            .getPublicUrl(fileName);
 
         return publicUrlData.publicUrl;
-      };
+    };
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-          try {
-            const supabaseUrl = await uploadToSupabase(file);
-            setPreviewUrl(supabaseUrl);
-          } catch (err) {
-            alert("Failed to upload image");
-          }
+            try {
+                const supabaseUrl = await uploadToSupabase(file);
+                setPreviewUrl(supabaseUrl);
+            } catch (err) {
+                alert("Failed to upload image");
+            }
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const deviceId = localStorage.getItem("device_id");
 
         const newAlert = new WeatherAlert({
             name: formData.name,
@@ -175,18 +185,33 @@ const TemperaturePage = () => {
 
         setAlerts((prev) => [newAlert, ...prev]);
 
-        // Reset form
+        const { error } = await supabase.from("user_alerts").insert({
+            name: newAlert.name,
+            location: newAlert.location,
+            description: newAlert.description,
+            weather_type: newAlert.weatherType,
+            image_url: newAlert.previewUrl,
+            lat: newAlert.lat,
+            lng: newAlert.lng,
+            created_at: newAlert.createdAt.toISOString(),
+            device_id: deviceId
+        });
+
+        if (error) {
+            console.error("Error inserting alert:", error);
+        }
+
         setFormData({
-          name: '',
-          description: '',
-          weatherType: '',
-          image: null,
-          location: '',
-          lat: null,
-          lng: null
+            name: '',
+            description: '',
+            weatherType: '',
+            image: null,
+            location: '',
+            lat: null,
+            lng: null
         });
         setPreviewUrl(null);
-      };
+    };
 
     const handleMapClick = (latlng) => {
         getPlaceName(latlng.lat, latlng.lng).then((placeName) => {
@@ -195,7 +220,7 @@ const TemperaturePage = () => {
                 location: placeName,
                 lat: latlng.lat,
                 lng: latlng.lng,
-              }));
+            }));
         });
         setSelectedPosition(latlng);
         setShowMap(false);
@@ -449,7 +474,7 @@ const TemperaturePage = () => {
 
                 {alerts.length > 0 && (
                     <div style={{ marginTop: '2rem' }}>
-                        <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Reported Alerts</h2>
+                        <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Reported Alerts By Current Device</h2>
                         <ul style={{ listStyle: 'none', padding: 0 }}>
                             {alerts.map((alert, idx) => (
                                 <li key={idx} style={{
@@ -485,6 +510,37 @@ const TemperaturePage = () => {
                                                 return type ? type.label : '';
                                             })()}
                                         </span>
+                                        <button
+                                            onClick={async () => {
+                                                const confirmed = window.confirm("Are you sure you want to delete this alert?");
+                                                if (!confirmed) return;
+
+                                                const { error } = await supabase
+                                                    .from("user_alerts")
+                                                    .delete()
+                                                    .eq("id", alert.id)
+                                                    .eq("device_id", localStorage.getItem("device_id")); // protection
+
+                                                if (error) {
+                                                    console.error("Failed to delete alert:", error);
+                                                    alert("Failed to delete alert.");
+                                                } else {
+                                                    setAlerts(prev => prev.filter(a => a.id !== alert.id));
+                                                }
+                                            }}
+                                            style={{
+                                                marginTop: "0.5rem",
+                                                backgroundColor: "#ff4d4d",
+                                                color: "white",
+                                                padding: "0.3rem 0.7rem",
+                                                border: "none",
+                                                borderRadius: "4px",
+                                                fontSize: "0.8rem",
+                                                cursor: "pointer"
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
                                     </div>
                                 </li>
                             ))}

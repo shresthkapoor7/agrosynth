@@ -7,6 +7,7 @@ import {
   FaSnowflake, FaBug, FaExclamationTriangle
 } from "react-icons/fa";
 import ReactDOMServer from "react-dom/server";
+import { supabase } from "../supabase";
 
 // Weather types with icon mapping
 const WEATHER_TYPES = {
@@ -52,15 +53,26 @@ const TemperaturePage = () => {
   const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem("weather_alerts");
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        setAlerts(parsed);
-      } catch (e) {
-        console.error("Failed to parse alerts from localStorage:", e);
+    const fetchAlerts = async () => {
+      const { data, error } = await supabase
+        .from("user_alerts")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Error fetching alerts:", error);
+      } else {
+        const formatted = data.map(alert => ({
+          ...alert,
+          previewUrl: alert.image_url,
+          weatherType: alert.weather_type,
+          createdAt: alert.created_at,
+        }));
+        setAlerts(formatted);
       }
-    }
+    };
+
+    fetchAlerts();
   }, []);
 
   useEffect(() => {
