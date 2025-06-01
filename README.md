@@ -23,8 +23,8 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
 - **Persistent Storage**: User alerts are saved in supabase and images are uploaded to Supabase Storage.
 
 <p align="center">
-  <img src="./public/1.jpg" width="300" />
-  <img src="./public/2.jpg" width="300" />
+  <img src="./public/1.jpg" width="400" />
+  <img src="./public/2.jpg" width="400" />
 </p>
 <p align="center">
   <img src="./public/3.jpg" width="250" />
