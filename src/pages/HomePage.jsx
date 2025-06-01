@@ -103,21 +103,16 @@ export default function HomePage() {
                         </a>
                     ))}
                 </div>
-                <div style={{ marginBottom: "2rem", textAlign: "center" }}>
-                    <video
-                        width="100%"
-                        height="auto"
-                        controls
-                        style={{
-                            maxWidth: "1000px",
-                            borderRadius: "12px",
-                            boxShadow: "0 2px 12px rgba(0,0,0,0.1)"
-                        }}
-                    >
-                        <source src="/agrosynth.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                <iframe
+                    width="100%"
+                    height="500"
+                    src="https://www.youtube.com/embed/clavoPIzdBc"
+                    title="Demo video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ borderRadius: "12px", boxShadow: "0 2px 12px rgba(0,0,0,0.1)" }}
+                ></iframe>
 
                 {alerts.length > 0 && (
                     <div style={{
