@@ -25,6 +25,8 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
 <p align="center">
   <img src="./public/1.jpg" width="250" />
   <img src="./public/2.jpg" width="250" />
+</p>
+<p align="center">
   <img src="./public/3.jpg" width="250" />
   <img src="./public/4.jpg" width="250" />
 </p>
