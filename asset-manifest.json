@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/agrosynth/static/css/main.323d7611.css",
-    "main.js": "/agrosynth/static/js/main.ba54c6e8.js",
+    "main.js": "/agrosynth/static/js/main.8e36e8fc.js",
     "static/js/0.89c9e007.chunk.js": "/agrosynth/static/js/0.89c9e007.chunk.js",
     "static/js/952.8770af96.chunk.js": "/agrosynth/static/js/952.8770af96.chunk.js",
     "static/js/453.0387939d.chunk.js": "/agrosynth/static/js/453.0387939d.chunk.js",
     "index.html": "/agrosynth/index.html",
     "main.323d7611.css.map": "/agrosynth/static/css/main.323d7611.css.map",
-    "main.ba54c6e8.js.map": "/agrosynth/static/js/main.ba54c6e8.js.map",
+    "main.8e36e8fc.js.map": "/agrosynth/static/js/main.8e36e8fc.js.map",
     "0.89c9e007.chunk.js.map": "/agrosynth/static/js/0.89c9e007.chunk.js.map",
     "952.8770af96.chunk.js.map": "/agrosynth/static/js/952.8770af96.chunk.js.map",
     "453.0387939d.chunk.js.map": "/agrosynth/static/js/453.0387939d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.323d7611.css",
-    "static/js/main.ba54c6e8.js"
+    "static/js/main.8e36e8fc.js"
   ]
 }
