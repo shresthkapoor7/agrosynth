@@ -16,9 +16,15 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
 - React (with functional components and hooks)
 - React Router DOM
 - React Leaflet (for maps)
-- Supabase (for image storage)
+- Supabase (for image storage) and Storing alerts
 - React Icons
-- CSS-in-JS and inline responsive styles
+
+## Contributors
+- [Shresth Kapoor](https://github.com/ShresthKapoor7)
+- [Aditya Maheshwari](https://www.linkedin.com/in/aditya-maheshwari-56b544251/)
+- [Hannah](https://www.linkedin.com/in/hannah-hb1225/)
+- [Tram Nguyen](https://www.linkedin.com/in/ngoctramnguyen22/)
+- [Tanishq Sharma](https://www.linkedin.com/in/tanishq-sharma-ts/)
 
 ## Getting Started
 
