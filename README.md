@@ -26,7 +26,7 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
   <img src="./public/1.jpg" width="500" />
   <img src="./public/2.jpg" width="500" />
 </p>
-<p>
+<p align="center">
    <img src="./public/3.jpg" width="500" />
    <img src="./public/4.jpg" width="500" />
 </p>
@@ -34,16 +34,16 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
   <img src="./public/5.jpg" width="500" />
   <img src="./public/6.jpg" width="500" />
 </p>
-<p>
+<p align="center">
   <img src="./public/7.jpg" width="500" />
   <img src="./public/8.jpg" width="500" />
 </p>
 
 <p align="center">
-  <img src="./public/9.jpeg" width="245" />
-  <img src="./public/10.jpeg" width="245" />
-  <img src="./public/11.jpeg" width="245" />
-  <img src="./public/12.jpeg" width="245" />
+  <img src="./public/9.jpeg" width="220" />
+  <img src="./public/10.jpeg" width="220" />
+  <img src="./public/11.jpeg" width="220" />
+  <img src="./public/12.jpeg" width="220" />
 </p>
 
 ## RAG Backend
