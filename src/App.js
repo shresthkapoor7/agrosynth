@@ -192,7 +192,7 @@ function NavigationBar() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/agrosynth">
       <div
         style={{
           minHeight: "100vh",
