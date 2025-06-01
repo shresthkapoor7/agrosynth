@@ -5,11 +5,12 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
 🎥 [Watch Demo Video](https://www.youtube.com/watch?v=clavoPIzdBc)
 
 ## Contributors
-- [Shresth Kapoor](https://github.com/ShresthKapoor7)
-- [Aditya Maheshwari](https://www.linkedin.com/in/aditya-maheshwari-56b544251/)
+- [Shresth](https://github.com/ShresthKapoor7)
+- [Aditya](https://www.linkedin.com/in/aditya-maheshwari-56b544251/)
 - [Hannah](https://www.linkedin.com/in/hannah-hb1225/)
-- [Tram Nguyen](https://www.linkedin.com/in/ngoctramnguyen22/)
-- [Tanishq Sharma](https://www.linkedin.com/in/tanishq-sharma-ts/)
+- [Tram](https://www.linkedin.com/in/ngoctramnguyen22/)
+- [Tanishq](https://www.linkedin.com/in/tanishq-sharma-ts/)
+
 
 ## Features
 
@@ -20,6 +21,30 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
 - **Report Alert**: Submit weather events with location picking (map or geolocation), image upload (Supabase), and see a list of all reported alerts.
 - **Mobile Responsive**: Fully responsive UI/UX for mobile, tablet, and desktop.
 - **Persistent Storage**: User alerts are saved in local storage and images are uploaded to Supabase Storage.
+
+<p align="center">
+  <img src="./public/1.jpg" width="500" />
+  <img src="./public/2.jpg" width="500" />
+</p>
+<p>
+   <img src="./public/3.jpg" width="500" />
+   <img src="./public/4.jpg" width="500" />
+</p>
+<p align="center">
+  <img src="./public/5.jpg" width="500" />
+  <img src="./public/6.jpg" width="500" />
+</p>
+<p>
+  <img src="./public/7.jpg" width="500" />
+  <img src="./public/8.jpg" width="500" />
+</p>
+
+<p align="center">
+  <img src="./public/9.jpeg" width="245" />
+  <img src="./public/10.jpeg" width="245" />
+  <img src="./public/11.jpeg" width="245" />
+  <img src="./public/12.jpeg" width="245" />
+</p>
 
 ## RAG Backend
 https://github.com/Tans37/AgroSynth-RAG
@@ -87,11 +112,6 @@ src/
   supabase.js       # Supabase client setup
 ```
 
-## Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](LICENSE)
-
 ---
-Built for the Open Source Hackathon 🚀
+
+<p align ="center">Built for the Reboot The Earth Hackathon 🚀 </p>
