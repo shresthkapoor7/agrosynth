@@ -280,6 +280,39 @@ export default function HomePage() {
                             <FaGithub size={20} /> GitHub
                         </span>
                     </div>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "2rem",
+                        marginBottom: "2rem"
+                    }}>
+                        <a
+                            href="https://github.com/shresthkapoor7/agrosynth" // replace with your repo URL
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                color: "#0077b6",
+                                fontWeight: 500,
+                                textDecoration: "none",
+                                border: "1px solid #0077b6",
+                                padding: "0.5rem 1.2rem",
+                                borderRadius: "6px",
+                                transition: "all 0.2s ease-in-out"
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = "#0077b6";
+                                e.currentTarget.style.color = "white";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = "transparent";
+                                e.currentTarget.style.color = "#0077b6";
+                            }}
+                        >
+                            <span style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                                <FaGithub size={20} /> View on GitHub
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
