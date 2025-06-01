@@ -2,6 +2,15 @@
 
 AgroSynth Weather Intelligence is an open-source, modern weather intelligence platform designed for agriculture and community use. It provides real-time weather data, user-generated alerts, AI-powered predictions, and interactive weather maps—all in a beautiful, responsive web app.
 
+🎥 [Watch Demo Video](https://www.youtube.com/watch?v=clavoPIzdBc)
+
+## Contributors
+- [Shresth Kapoor](https://github.com/ShresthKapoor7)
+- [Aditya Maheshwari](https://www.linkedin.com/in/aditya-maheshwari-56b544251/)
+- [Hannah](https://www.linkedin.com/in/hannah-hb1225/)
+- [Tram Nguyen](https://www.linkedin.com/in/ngoctramnguyen22/)
+- [Tanishq Sharma](https://www.linkedin.com/in/tanishq-sharma-ts/)
+
 ## Features
 
 - **Home Dashboard**: Overview of all features and quick navigation.
@@ -12,19 +21,15 @@ AgroSynth Weather Intelligence is an open-source, modern weather intelligence pl
 - **Mobile Responsive**: Fully responsive UI/UX for mobile, tablet, and desktop.
 - **Persistent Storage**: User alerts are saved in local storage and images are uploaded to Supabase Storage.
 
+## RAG Backend
+https://github.com/Tans37/AgroSynth-RAG
+
 ## Tech Stack
 - React (with functional components and hooks)
 - React Router DOM
 - React Leaflet (for maps)
 - Supabase (for image storage) and Storing alerts
 - React Icons
-
-## Contributors
-- [Shresth Kapoor](https://github.com/ShresthKapoor7)
-- [Aditya Maheshwari](https://www.linkedin.com/in/aditya-maheshwari-56b544251/)
-- [Hannah](https://www.linkedin.com/in/hannah-hb1225/)
-- [Tram Nguyen](https://www.linkedin.com/in/ngoctramnguyen22/)
-- [Tanishq Sharma](https://www.linkedin.com/in/tanishq-sharma-ts/)
 
 ## Getting Started
 
